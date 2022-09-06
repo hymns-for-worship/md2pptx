@@ -15,13 +15,13 @@
 import Debug from 'debug';
 import extend from 'extend';
 import Token from 'markdown-it/lib/token';
-import parse5, {Element} from 'parse5';
+import parse5, { Element } from 'parse5';
 import fileUrl from 'file-url';
-import {SlideDefinition, StyleDefinition} from '../slides';
+import { SlideDefinition, StyleDefinition } from '../slides';
 import parseMarkdown from './parser';
-import {Context} from './env';
+import { Context } from './env';
 import highlightSyntax from './syntax_highlight';
-import {parseStyleSheet, parseInlineStyle, updateStyleDefinition} from './css';
+import { parseStyleSheet, parseInlineStyle, updateStyleDefinition } from './css';
 import assert from 'assert';
 
 const debug = Debug('md2gslides');
@@ -102,7 +102,7 @@ function applyTokenStyle(
 // These rules are specific to parsing markdown in an inline context.
 
 inlineTokenRules['heading_open'] = (token, context) => {
-  const style = applyTokenStyle(token, {bold: true});
+  const style = applyTokenStyle(token, { bold: true });
   context.startStyle(style); // TODO - Better style for inline headers
 };
 
@@ -155,7 +155,7 @@ inlineTokenRules['html_inline'] = (token, context) => {
     }
 
     const styleAttr = node.attrs.find(
-      (attr: {name: string}) => attr.name === 'style'
+      (attr: { name: string }) => attr.name === 'style'
     );
     if (styleAttr) {
       const css = parseInlineStyle(styleAttr.value);
@@ -210,7 +210,7 @@ inlineTokenRules['paragraph_close'] = (token, context) => {
 };
 
 inlineTokenRules['fence'] = (token, context) => {
-  const style = applyTokenStyle(token, {fontFamily: 'Courier New'});
+  const style = applyTokenStyle(token, { fontFamily: 'Courier New' });
   context.startStyle(style);
   const language = token.info ? token.info.trim() : undefined;
   if (language) {
@@ -226,21 +226,21 @@ inlineTokenRules['fence'] = (token, context) => {
 };
 
 inlineTokenRules['em_open'] = (token, context) => {
-  const style = applyTokenStyle(token, {italic: true});
+  const style = applyTokenStyle(token, { italic: true });
   context.startStyle(style);
 };
 
 inlineTokenRules['em_close'] = (token, context) => context.endStyle();
 
 inlineTokenRules['s_open'] = (token, context) => {
-  const style = applyTokenStyle(token, {strikethrough: true});
+  const style = applyTokenStyle(token, { strikethrough: true });
   context.startStyle(style);
 };
 
 inlineTokenRules['s_close'] = (token, context) => context.endStyle();
 
 inlineTokenRules['strong_open'] = (token, context) => {
-  const style = applyTokenStyle(token, {bold: true});
+  const style = applyTokenStyle(token, { bold: true });
   context.startStyle(style);
 };
 
@@ -258,7 +258,7 @@ inlineTokenRules['link_open'] = (token, context) => {
 inlineTokenRules['link_close'] = (token, context) => context.endStyle();
 
 inlineTokenRules['code_inline'] = (token, context) => {
-  const style = applyTokenStyle(token, {fontFamily: 'Courier New'});
+  const style = applyTokenStyle(token, { fontFamily: 'Courier New' });
   context.startStyle(style);
   context.appendText(token.content);
   context.endStyle();
@@ -271,7 +271,7 @@ inlineTokenRules['softbreak'] = (token, context) => context.appendText(' ');
 
 inlineTokenRules['blockquote_open'] = (token, context) => {
   // TODO - More interesting styling for block quotes
-  const style = applyTokenStyle(token, {italic: true});
+  const style = applyTokenStyle(token, { italic: true });
   context.startStyle(style);
 };
 
@@ -457,11 +457,11 @@ fullTokenRules['table_close'] = (token, context) => {
   context.endStyle();
 };
 
-fullTokenRules['thead_open'] = () => {};
-fullTokenRules['thead_close'] = () => {};
+fullTokenRules['thead_open'] = () => { };
+fullTokenRules['thead_close'] = () => { };
 
-fullTokenRules['tbody_open'] = () => {};
-fullTokenRules['tbody_close'] = () => {};
+fullTokenRules['tbody_open'] = () => { };
+fullTokenRules['tbody_close'] = () => { };
 
 fullTokenRules['tr_open'] = (token, context) => {
   const style = applyTokenStyle(token, {});
@@ -551,6 +551,7 @@ export default function extractSlides(
   markdown: string,
   stylesheet?: string
 ): SlideDefinition[] {
+  if (markdown === '') return [];
   const tokens = parseMarkdown(markdown);
   const css = parseStyleSheet(stylesheet);
   const context = new Context(css);

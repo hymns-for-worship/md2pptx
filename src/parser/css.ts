@@ -18,7 +18,7 @@ import Debug from 'debug';
 import inlineStylesParse from 'inline-styles-parse';
 // @ts-ignore
 import nativeCSS from 'native-css';
-import {Color, StyleDefinition} from '../slides';
+import { Color, StyleDefinition } from '../slides';
 import * as _ from 'lodash';
 
 const debug = Debug('md2gslides');
