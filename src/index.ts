@@ -1,30 +1,23 @@
 import pptxgen from "pptxgenjs";
 import extractSlides from "./parser/extract_slides";
+import { convertSlides } from "./convert";
+import { addTemplates } from "./templates";
 
 interface ParserOptions {
-    css: string;
-    useFileio: boolean,
+    css?: string;
+    useFileio?: boolean,
+    title?: string;
 }
 
-// /**
-//    * Generate slides from markdown
-//    *
-//    * @param {String} markdown Markdown to import
-//    * @param css
-//    * @param useFileio
-//    * @returns {Promise.<String>} ID of generated slide
-//    */
-// export async function generateFromMarkdown(
-//     markdown: string,
-//     { css, useFileio }: ParserOptions
-// ): Promise<string> {
-//     const slides = extractSlides(markdown, css);
-//     return slides;
-// }
-
 export function generateSlides(markdown: string,
-    { css, useFileio }: ParserOptions) {
-    const slides = extractSlides(markdown, css);
-    return slides;
+    options?: ParserOptions) {
+    let pres = new pptxgen();
+    addTemplates(pres);
+    const slides = extractSlides(markdown, options?.css);
+    pres = convertSlides(pres, slides);
+    if (options?.title) {
+        pres.title = options.title;
+    }
+    return pres;
 }
 

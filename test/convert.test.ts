@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
 import pptxgen from "pptxgenjs";
-import { convertSlides } from '../../src/transformers/convert';
-import extractSlides from '../../src/parser/extract_slides';
+import { convertSlides } from '../src/convert';
+import extractSlides from '../src/parser/extract_slides';
 
 it('check if background images are added', () => {
     let pres = new pptxgen();

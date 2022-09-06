@@ -53,3 +53,10 @@ export function rgbToHex(r: number, g: number, b: number): string {
     return hex.length === 1 ? '0' + hex : hex;
   }).join('');
 }
+
+export function hexString(color: string) {
+  if (color.startsWith('#')) {
+    return color.substring(1);
+  }
+  return color;
+}
