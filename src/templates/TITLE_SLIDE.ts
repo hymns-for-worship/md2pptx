@@ -37,7 +37,7 @@ export function addTitleSlide(pres: pptxgen) {
                         valign: "middle",
                         margin: 0,
                     },
-                    text: "(Click to edit)",
+                    text: "",
                 },
             }
         ],
