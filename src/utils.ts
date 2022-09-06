@@ -12,8 +12,44 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {v1 as uuidV1} from 'uuid';
+import { v1 as uuidV1 } from 'uuid';
+import { Color } from './slides';
 
 export function uuid(): string {
   return uuidV1();
+}
+
+export function convertColorToHex(color: Color, fallback: string = '#FFFFFF'): string {
+  if (color) {
+    if (typeof color === 'string') {
+      if (color.startsWith('#')) {
+        // Remove the # if it's there
+        return color.substring(1);
+      }
+      return color;
+    }
+    // Convert object to hex
+    if (color.opaqueColor?.rgbColor) {
+      const { red, green, blue } = color.opaqueColor.rgbColor;
+      if (red && green && blue) {
+        return rgbToHex(red, green, blue);
+      }
+    }
+    if (color.opaqueColor?.themeColor) {
+      const value = color.opaqueColor.themeColor;
+      if (value.startsWith('#')) {
+        // Remove the # if it's there
+        return value.substring(1);
+      }
+    }
+    console.warn(`Unable to convert color ${JSON.stringify(color)} to hex`);
+  }
+  return fallback;
+}
+
+export function rgbToHex(r: number, g: number, b: number): string {
+  return [r, g, b].map(x => {
+    const hex = x?.toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+  }).join('');
 }
