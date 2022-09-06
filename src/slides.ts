@@ -12,9 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {slides_v1 as SlidesV1} from 'googleapis';
-
-export type Color = SlidesV1.Schema$OptionalColor;
+export type Color = string | {
+  opaqueColor?: {
+    rgbColor?: {
+      red: number | null,
+      green: number | null,
+      blue: number | null,
+    },
+    themeColor?: string | null,
+  },
+};
 export interface ListMarker {
   start: number;
   end: number;

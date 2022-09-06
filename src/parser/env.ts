@@ -21,12 +21,12 @@ import {
   ImageDefinition,
   VideoDefinition,
 } from '../slides';
-import {uuid} from '../utils';
+import { uuid } from '../utils';
 import extend from 'extend';
 import * as _ from 'lodash';
-import {Stylesheet} from './css';
+import { Stylesheet } from './css';
 import assert from 'assert';
-import {Element} from 'parse5';
+import { Element } from 'parse5';
 
 export class Context {
   public slides: SlideDefinition[] = [];

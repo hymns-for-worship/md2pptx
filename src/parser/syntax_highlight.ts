@@ -13,9 +13,9 @@
 // limitations under the License.
 
 import low from 'lowlight';
-import {Context} from './env';
-import {CssRule, updateStyleDefinition} from './css';
-import {StyleDefinition} from '../slides';
+import { Context } from './env';
+import { CssRule, updateStyleDefinition } from './css';
+import { StyleDefinition } from '../slides';
 
 type RuleFn = (node: lowlight.HastNode, context: Context) => void;
 interface Rules {
@@ -56,7 +56,7 @@ function processHastNode(node: lowlight.HastNode, context: Context): void {
 
 function extractStyle(
   node: lowlight.HastNode,
-  cssRules: {[key: string]: CssRule}
+  cssRules: { [key: string]: CssRule }
 ): StyleDefinition {
   let style = {};
   if (!isElementNode(node)) {

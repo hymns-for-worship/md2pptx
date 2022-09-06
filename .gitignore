@@ -2,6 +2,7 @@
 logs
 *.log
 npm-debug.log*
+.vscode
 
 # IntelliJ
 .idea/
@@ -45,3 +46,4 @@ jspm_packages
 
 # Exclude the compiled lib directory
 lib
+old-src

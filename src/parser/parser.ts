@@ -44,10 +44,10 @@ const mdOptions = {
 const parser = markdownIt(mdOptions)
   .use(attrs)
   .use(lazyHeaders)
-  .use(emoji, {shortcuts: {}})
-  .use(expandTabs, {tabWidth: 4})
+  .use(emoji, { shortcuts: {} })
+  .use(expandTabs, { tabWidth: 4 })
   .use(generatedImage)
-  .use(video, {youtube: {width: 640, height: 390}});
+  .use(video, { youtube: { width: 640, height: 390 } });
 
 function parseMarkdown(markdown: string): Token[] {
   return parser.parse(markdown, {});
