@@ -9,12 +9,10 @@ it('check if title is added and correct master is used', async () => {
         "",
     ].join('\n');
 
-    const pres = generateSlides(markdown);
+    const pres = await generateSlides(markdown);
 
     const { _slides } = Object(pres) as any;
-    const { _master } = Object(_slides[0]) as any;
+    const slide = _slides[0] as pptxgen.Slide;
 
-    await pres.writeFile({ fileName: './test.pptx' });
-
-    expect(_master).toBe('TITLE_SLIDE');
+    expect(slide.background.color).toBe('000000');
 });

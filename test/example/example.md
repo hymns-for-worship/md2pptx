@@ -94,7 +94,7 @@ This is the *left* column
 ---
 # Slides can have local images 
 
-![](image_slide.png)
+![](./image_slide.png)
 
 ---
 

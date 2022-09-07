@@ -3,6 +3,9 @@ import pptxgen from "pptxgenjs";
 export function addTitleSlide(pres: pptxgen) {
     pres.defineSlideMaster({
         title: "TITLE_SLIDE",
+        background: {
+            color: "000000",
+        },
         objects: [
             {
                 placeholder: {
@@ -13,7 +16,7 @@ export function addTitleSlide(pres: pptxgen) {
                         h: '20%',
                         w: "100%",
                         fontFace: "Arial",
-                        color: '000000',
+                        color: 'FFFFFF',
                         fontSize: 60,
                         align: "center",
                         valign: "middle",
@@ -37,7 +40,7 @@ export function addTitleSlide(pres: pptxgen) {
                         valign: "middle",
                         margin: 0,
                     },
-                    text: "(Click to edit)",
+                    text: "",
                 },
             }
         ],

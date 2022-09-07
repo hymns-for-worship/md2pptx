@@ -14,6 +14,8 @@
 
 import { v1 as uuidV1 } from 'uuid';
 import { Color } from './slides';
+import fetch from "node-fetch";
+import * as fs from 'fs';
 
 export function uuid(): string {
   return uuidV1();
@@ -59,4 +61,16 @@ export function hexString(color: string) {
     return color.substring(1);
   }
   return color;
+}
+
+export async function getImage(img: string) {
+  if (img.startsWith('http')) {
+    const data = await fetch(img).then(res => res.arrayBuffer());
+    const base64 = Buffer.from(data).toString('base64');
+    return `data:image/png;base64,${base64}`;
+  }
+  else {
+    console.error('Only http images are supported');
+    return undefined;
+  }
 }
