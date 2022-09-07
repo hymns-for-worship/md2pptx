@@ -37,7 +37,6 @@
     "mime-types": "^2.1.22",
     "mkdirp": "^1.0.4",
     "native-css": "^2.0.0",
-    "node-fetch": "^2.3.0",
     "opener": "^1.4.2",
     "parse-color": "^1.0.0",
     "parse5": "^6.0.1",
@@ -80,6 +79,7 @@
     "mocha": "9.0.1",
     "mock-fs": "5.0.0",
     "nock": "13.1.0",
+    "node-fetch": "^3.2.10",
     "typescript": "4.3.4",
     "vite": "^3.1.0",
     "vitest": "^0.23.1"

@@ -9,12 +9,12 @@ interface ParserOptions {
     title?: string;
 }
 
-export function generateSlides(markdown: string,
+export async function generateSlides(markdown: string,
     options?: ParserOptions) {
     let pres = new pptxgen();
     addTemplates(pres);
     const slides = extractSlides(markdown, options?.css);
-    pres = convertSlides(pres, slides);
+    pres = await convertSlides(pres, slides);
     if (options?.title) {
         pres.title = options.title;
     }
